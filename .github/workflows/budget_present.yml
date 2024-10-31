@@ -1,0 +1,35 @@
+name: Check README for "Budget"
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  check-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Check if the word "Budget" exists in README.md
+      - name: Check for "Budget" in README.md
+        id: check_budget
+        run: |
+          if grep -iq "budget" README.md; then
+            echo "The word 'Budget' was found in README.md."
+            echo "::set-output name=budget_found::true"
+          else
+            echo "The word 'Budget' was not found in README.md."
+            echo "::set-output name=budget_found::false"
+          fi
+
+      # Fail the job if "Budget" is missing
+      - name: Fail if "Budget" is not found
+        if: steps.check_budget.outputs.budget_found == 'false'
+        run: |
+          echo "Error: The word 'Budget' is missing in README.md."
+          exit 1
