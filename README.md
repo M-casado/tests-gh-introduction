@@ -3,4 +3,5 @@
 Groceries:
 - 12 Eggs
 - 1kg Potatoes
+- Popcorn
 - 200g Chocolate
