@@ -6,3 +6,5 @@ Groceries:
 - 10 broccoli florets
 - Popcorn
 - 200g Chocolate
+
+Budget: 100 USD
